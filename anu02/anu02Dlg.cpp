@@ -7,6 +7,7 @@
 #include "anu02.h"
 #include "anu02Dlg.h"
 #include "afxdialogex.h"
+#include <stdexcept>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -66,6 +67,10 @@ BEGIN_MESSAGE_MAP(Canu02Dlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_BUTTON1, &Canu02Dlg::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_BUTTON5, &Canu02Dlg::OnBnClickedButton5)
+	ON_BN_CLICKED(IDC_BUTTON2, &Canu02Dlg::OnBnClickedButton2)
+	ON_BN_CLICKED(IDC_BUTTON3, &Canu02Dlg::OnBnClickedButton3)
+	ON_BN_CLICKED(IDC_BUTTON4, &Canu02Dlg::OnBnClickedButton4)
 END_MESSAGE_MAP()
 
 
@@ -162,4 +167,51 @@ void Canu02Dlg::OnBnClickedButton1()
 	int b = GetDlgItemInt(IDC_EDIT2);
 	SetDlgItemInt(IDC_EDIT3, a + b);
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+}
+
+
+
+void Canu02Dlg::OnBnClickedButton2()
+{
+	int a = GetDlgItemInt(IDC_EDIT1);
+	int b = GetDlgItemInt(IDC_EDIT2);
+	SetDlgItemInt(IDC_EDIT3, a - b);
+}
+
+
+void Canu02Dlg::OnBnClickedButton3()
+{
+	int a = GetDlgItemInt(IDC_EDIT1);
+	int b = GetDlgItemInt(IDC_EDIT2);
+	SetDlgItemInt(IDC_EDIT3, a * b);
+}
+
+void Canu02Dlg::OnBnClickedButton4()
+{
+    int a = GetDlgItemInt(IDC_EDIT1);
+    int b = GetDlgItemInt(IDC_EDIT2);
+    if (b == 0) 
+    {
+        AfxMessageBox(_T("Division by zero is not allowed."));
+        SetDlgItemInt(IDC_EDIT3, 0);
+    }
+    else
+    {
+        SetDlgItemInt(IDC_EDIT3, a / b);
+    }
+}
+
+void Canu02Dlg::OnBnClickedButton5()
+{
+    int a = GetDlgItemInt(IDC_EDIT1);
+    int b = GetDlgItemInt(IDC_EDIT2);
+    if (b == 0) 
+    {
+        AfxMessageBox(_T("Division by zero is not allowed."));
+        SetDlgItemInt(IDC_EDIT3, 0);
+    }
+    else
+    {
+        SetDlgItemInt(IDC_EDIT3, a % b);
+    }
 }
